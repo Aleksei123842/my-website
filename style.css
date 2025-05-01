@@ -1,0 +1,9 @@
+body {
+    margin: 0; /* Убираем отступы /
+    padding: 0; / Убираем отступы /
+    font-family: Arial, sans-serif;
+    background-image: url('images/fone2.jpg'); / Путь к картинке /
+    background-size: cover; / Картинка растягивается на весь экран /
+    background-repeat: no-repeat; / Не повторять изображение /
+    background-position: center; / Центрирование изображения */
+  }
