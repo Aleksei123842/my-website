@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+    body {
+    background-image: url(images/beg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+    }
+
+    .container {
+      text-align: center;
+      background: #030303; /* Белый фон контейнера /
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 50%; / Ширина контейнера */
+    }
+
+    h1 {
+      color: #000000; /* Тёмный заголовок */
+      font-size: 2.3em;
+      margin-bottom: 20px;
+    }
+
+    .form-inline {
+      display: flex; /* Ввод в одну строку /
+      justify-content: center;
+      gap: 12px; / Расстояние между элементами */
+      margin-bottom: 15px;
+    }
+
+    input, button {
+      font-size: 14px;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #0c0c0c;
+    }
+
+    input {
+      width: 30%; /* Узкие поля */
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #75de78; /* Зелёный фон кнопки */
+      color: rgb(0, 0, 0);
+      border: none;
+      cursor: pointer;
+      padding: 8px 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    table {
+      width: 80%; /* Компактная таблица /
+      margin: 20px auto; / Центрирование таблицы */
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #000000;
+      padding: 10px;
+      text-align: center;
+      font-size: 22px; /* Уменьшенный текст */
+    }
+
+    th {
+  font-size: 22px;
+  color: white;
+  background-color: #4CAF50; /* Цвет фона заголовков */
+  font-weight: bold;
+}
+
+td {
+  font-size: 18px;
+  color: #000000;
+}
+tr:nth-child(even) {
+  background-color: #6d6d6d; /* Серый фон для чётных строк */
+}
+
+tr:nth-child(odd) {
+  background-color: #b8b8b8; /* Белый фон для нечётных строк */
+}
+    .delete-btn {
+      background-color: #d9534f;
+      color: rgb(28, 28, 28);
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .delete-btn:hover {
+      background-color: #c9302c;
+    }
+
+    .quantity-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .quantity-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .download-btn {
+      margin-top: 20px; /* Отступ под таблицей /
+      padding: 10px 16px; / Увеличенный размер кнопки */
+      background-color: #4CAF50;
+      color: rgb(7, 88, 143);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .download-btn:hover {
+      background-color: #45a049;
+    }
+
+    .img-container img {
+      width: 100%; /* Уменьшение для удобного отображения */
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Заголовок и изображение -->
+    <div class="img-container">
+      <img src="images/banner-1557841.jpg" alt="Изображение для сайта">
+      <h1>введите название и добавь количество едениц:</h1>
+    </div>
+
+    <!-- Форма для добавления записи в одну строку -->
+    <form id="inventory-form" class="form-inline">
+      <input type="text" id="item-name" placeholder="Название" required>
+      <input type="text" id="item-category" placeholder="Категория" required>
+      <input type="number" id="item-quantity" placeholder="Количество" required>
+      <button type="submit">Добавить</button>
+    </form>
+    <!-- Таблица для отображения записей -->
+    <table id="inventory-table">
+      <thead>
+        <tr>
+          <th>Наименование</th>
+          <th>Категория</th>
+          <th>Количество</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- Кнопка для скачивания TXT -->
+    <button class="download-btn" onclick="downloadTXT()">Скачать таблицу в формате TXT</button>
+  </div>
+  <script>
+    const form = document.getElementById('inventory-form');
+    const tableBody = document.getElementById('inventory-table').querySelector('tbody');
+    const inventory = [];
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('item-name').value.trim();
+      const category = document.getElementById('item-category').value.trim();
+      const quantity = parseInt(document.getElementById('item-quantity').value, 10);
+
+      if (!name || !category || isNaN(quantity)) {
+        alert('Заполните все поля корректно.');
+        return;
+      }
+
+      inventory.push({ name, category, quantity });
+
+      updateTable();
+      form.reset();
+    });
+
+    function updateTable() {
+      tableBody.innerHTML = '';
+      inventory.forEach((item, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.category}</td>
+          <td>${item.quantity}</td>
+          <td>
+            <button class="quantity-btn" onclick="increaseQuantity(${index})">+</button>
+            <button class="quantity-btn" onclick="decreaseQuantity(${index})">-</button>
+            <button class="delete-btn" onclick="deleteItem(${index})">Удалить</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function increaseQuantity(index) {
+      inventory[index].quantity += 1;
+      updateTable();
+    }
+
+    function decreaseQuantity(index) {
+      inventory[index].quantity -= 1;
+      updateTable();
+    }
+
+    function deleteItem(index) {
+      inventory.splice(index, 1);
+      updateTable();
+    }
+
+    function downloadTXT() {
+      let content = "Название\tКатегория\tКоличество\n"; // Заголовки
+      inventory.forEach(item => {
+        content += `${item.name}\t${item.category}\t${item.quantity}\n`; // Данные строки
+      });
+      
+      const blob = new Blob([content], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "inventory.txt"; // Имя файла
+      
+      link.click();
+      
+      
+    }
+  </script>
+</body>
+</html>
