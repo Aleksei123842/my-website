@@ -1,0 +1,179 @@
+
+   body {
+  background-image: url(images/beg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.container {
+  text-align: center;
+  background: #030303;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%; /* Увеличенная ширина контейнера /
+  max-width: 600px; / Ограничение ширины */
+}
+
+h1 {
+  color: #000000;
+  font-size: 2.3em;
+  margin-bottom: 20px;
+}
+
+.form-inline {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+input, button {
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #0c0c0c;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #75de78;
+  color: rgb(0, 0, 0);
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+}
+button{
+  transition: background-color 0.3s
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+table {
+  width: 100%;
+  overflow-x: auto; /* Горизонтальная прокрутка */
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #000000;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  white-space: nowrap; /* Запрещаем перенос строк */
+}
+
+th {
+  color: white;
+  background-color: #4CAF50;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #6d6d6d;
+}
+
+tr:nth-child(odd) {
+  background-color: #b8b8b8;
+}
+
+.delete-btn {
+  background-color: #d9534f;
+  color: rgb(28, 28, 28);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.quantity-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.download-btn {
+  margin-top: 20px;
+  padding: 10px 16px;
+  background-color: #4CAF50;
+  color: rgb(7, 88, 143);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.download-btn:hover {
+  background-color: #45a049;
+}
+
+@media screen and (max-width: 600px) {
+  .form-inline {
+    flex-direction: column; /* Поля формы в столбик */
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+tr:nth-child(odd) {
+  background-color: #b8b8b8; /* Белый фон для нечётных строк */
+}
+    .delete-btn {
+      background-color: #d9534f;
+      color: rgb(28, 28, 28);
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .delete-btn:hover {
+      background-color: #c9302c;
+    }
+
+    .quantity-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .quantity-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .download-btn {
+      margin-top: 20px; /* Отступ под таблицей /
+      padding: 10px 16px; / Увеличенный размер кнопки */
+      background-color: #4CAF50;
+      color: rgb(7, 88, 143);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .download-btn:hover {
+      background-color: #45a049;
+    }
+
+    .img-container img {
+      width: 100%; /* Уменьшение для удобного отображения */
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+  
+ 
